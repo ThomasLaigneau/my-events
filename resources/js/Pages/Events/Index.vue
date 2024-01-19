@@ -20,10 +20,32 @@ defineProps({
 
 const unselectCheckbox = () => {
     console.log(myCheckbox.value[1]);
-    for(let i=0;i < myCheckbox.value.length; i++){
+    for (let i = 0; i < myCheckbox.value.length; i++) {
         myCheckbox.value[i].checked = false;
     }
 }
+
+
+const checkboxes = document.getElementsByClassName("myCheckbox");
+let checkedCount = 0;
+// for (const checkbox of checkboxes) {
+//     if (checkbox.checked) {
+//         checkedCount++;
+//     }
+for (let i = 0; i < myCheckbox.value.length; i++) {
+    checkedCount++;
+    console.log(checkedCount)
+}
+// }
+
+
+
+function recupererValeur() {
+    var PriceFrom = document.getElementById("FilterPriceFrom");
+    var valeurPriceFrom = PriceFrom.value;
+    console.log("La valeur de l'input est : " + valeurPriceFrom);
+}
+
 
 
 const highestPrice = events => Math.max(...events);
@@ -40,8 +62,7 @@ const highestPrice = events => Math.max(...events);
                     <h2 class="text-xl font-bold text-gray-900 sm:text-3xl">Evenements</h2>
 
                     <p class="mt-4 max-w-md text-gray-500">
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Itaque praesentium cumque iure
-                        dicta incidunt est ipsam, officia dolor fugit natus?
+                        Bienvenue sur notre super site d'événements!
                     </p>
                 </header>
 
@@ -78,7 +99,7 @@ const highestPrice = events => Math.max(...events);
                                     class="z-50 group-open:absolute group-open:top-auto group-open:mt-2 ltr:group-open:start-0">
                                     <div class="w-96 rounded border border-gray-200 bg-white">
                                         <header class="flex items-center justify-between p-4">
-                                            <span class="text-sm text-gray-700"> 0 Selected </span>
+                                            <span class="text-sm text-gray-700"> {{ checkedCount }} checked </span>
 
                                             <button @click="unselectCheckbox" type="button"
                                                 class="text-sm text-gray-900 underline underline-offset-4">
@@ -89,8 +110,7 @@ const highestPrice = events => Math.max(...events);
                                         <ul class="space-y-1 border-t border-gray-200 p-4">
                                             <li v-for="(categories, index) in categories">
                                                 <label for="myCheckbox" class="inline-flex items-center gap-2">
-                                                    <input type="checkbox"
-                                                    ref="myCheckbox" id="myCheckbox"
+                                                    <input type="checkbox" ref="myCheckbox" id="myCheckbox"
                                                         class="h-5 w-5 rounded border-gray-300" />
 
                                                     <span class="text-sm font-medium text-gray-700"> {{ categories.name }}
@@ -154,6 +174,8 @@ const highestPrice = events => Math.max(...events);
                         </div>
                     </div>
 
+
+
                     <div class="hidden sm:block">
                         <label for="SortBy" class="sr-only">SortBy</label>
 
@@ -166,6 +188,9 @@ const highestPrice = events => Math.max(...events);
                         </select>
                     </div>
                 </div>
+
+
+
 
                 <ul class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
 
