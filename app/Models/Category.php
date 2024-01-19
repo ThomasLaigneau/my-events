@@ -14,7 +14,7 @@ class Category extends Model
         'name'
     ];
 
-    public function events(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function events()
     {
         return $this->belongsToMany(Event::class);
     }
