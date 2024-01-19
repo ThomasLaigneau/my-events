@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Event extends Model
 {
@@ -17,7 +16,8 @@ class Event extends Model
         'end_date',
         'location',
         'capacity',
-        'price'
+        'price',
+        'image',
     ];
 
     public function setPriceAttribute($value)

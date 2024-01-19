@@ -10,8 +10,6 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class EventResource extends Resource
 {
@@ -47,11 +45,14 @@ class EventResource extends Resource
                     ->numeric()
                     ->default(0)
                     ->prefix('€'),
-
                 Forms\Components\Select::make('categories')
                     ->multiple()
                     ->relationship('categories', 'name')
                     ->preload(),
+
+                Forms\Components\FileUpload::make('image')
+                    ->disk('public')
+                    ->directory('events'),
             ]);
     }
 
