@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EventController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -36,12 +37,10 @@ Route::middleware([
 });
 
 
-
-
-
-
 Route::get('/', function(){
     return view('accueil', ['name' => 'yo']);
 });
 
 Route::get('/user/{id}', [UserController::class, 'show']);
+
+Route::get('events', EventController::class)->name('events.index');
