@@ -46,7 +46,12 @@ class EventResource extends Resource
                     ->required()
                     ->numeric()
                     ->default(0)
-                    ->prefix('$'),
+                    ->prefix('€'),
+
+                Forms\Components\Select::make('categories')
+                    ->multiple()
+                    ->relationship('categories', 'name')
+                    ->preload(),
             ]);
     }
 
