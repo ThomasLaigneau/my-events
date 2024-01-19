@@ -1,10 +1,9 @@
 <?php
 
-use App\Http\Controllers\EventController;
-use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,11 +35,13 @@ Route::middleware([
     })->name('dashboard');
 });
 
-Route::get('/', function () {
-    return view('tabtest', ['name' => 'yo']);
+
+
+
+
+
+Route::get('/', function(){
+    return view('accueil', ['name' => 'yo']);
 });
 
 Route::get('/user/{id}', [UserController::class, 'show']);
-
-// Route vers les events
-Route::get('/events', EventController::class)->name('events.index');
