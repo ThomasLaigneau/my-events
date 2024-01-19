@@ -41,7 +41,7 @@ Route::middleware([
 
 
 Route::get('/', function(){
-    return view('tabtest', ['name' => 'yo']);
+    return view('accueil', ['name' => 'yo']);
 });
 
 Route::get('/user/{id}', [UserController::class, 'show']);
