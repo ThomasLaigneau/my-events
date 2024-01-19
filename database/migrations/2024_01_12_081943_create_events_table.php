@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('location');
             $table->integer('capacity')->nullable();
             $table->bigInteger('price')->default(0);
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }
