@@ -26,6 +26,11 @@ class CategoryResource extends Resource
                 Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(255),
+
+                Forms\Components\Select::make('events')
+                    ->multiple()
+                    ->relationship('events', 'title')
+                    ->preload(),
             ]);
     }
 
