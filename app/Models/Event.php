@@ -28,4 +28,9 @@ class Event extends Model
     {
         return $value / 100;
     }
+
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class);
+    }
 }
