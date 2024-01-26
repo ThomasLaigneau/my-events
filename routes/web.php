@@ -43,4 +43,6 @@ Route::get('/', function(){
 
 Route::get('/user/{id}', [UserController::class, 'show']);
 
-Route::get('events', EventController::class)->name('events.index');
+
+// Routes for events via la ressource EventController
+Route::resource('events', EventController::class);
