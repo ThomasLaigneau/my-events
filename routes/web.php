@@ -46,3 +46,6 @@ Route::get('/user/{id}', [UserController::class, 'show']);
 
 // Routes for events via la ressource EventController
 Route::resource('events', EventController::class);
+
+// Routes for Users via la ressource UserController sauf index update store
+Route::resource('users', UserController::class)->except(['index', 'update', 'store']);
