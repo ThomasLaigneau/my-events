@@ -40,7 +40,7 @@ class EventController extends Controller
         $event->attribute_name = $request->input('attribute_name');
         $event->save();
 
-        return redirect('/events');
+        return Inertia::render('Events/Index');
     }
 
     /**
