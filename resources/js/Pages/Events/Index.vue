@@ -26,18 +26,36 @@ const unselectCheckbox = () => {
 }
 
 
-const checkboxes = document.getElementsByClassName("myCheckbox");
-let checkedCount = 0;
-console.log(checkedCount);
-for (const checkbox of checkboxes) {
-    if (checkbox.checked) {
+// const checkboxes = document.getElementsByClassName("myCheckbox");
+// let checkedCount = 0;
+// console.log(checkedCount);
+// for (const checkbox of checkboxes) {
+//     if (checkbox.checked) {
+//         checkedCount++;
+//         console.log(checkedCount)
+//     }
+// // for (let i = 0; i < myCheckbox.value.length; i++) {
+// //     checkedCount++;
+// //     console.log(checkedCount)
+// }
+
+
+function checkedCount() {
+  var cases = document.querySelectorAll('input[type="checkbox"]');
+  console.log(document.getElementById("myCheckbox")); // pourquoi null ?
+  var checkedCount = 0;
+
+  cases.forEach(function(caseCochee) {
+    if (caseCochee.checked) {
         checkedCount++;
-        console.log(checkedCount)
     }
-// for (let i = 0; i < myCheckbox.value.length; i++) {
-//     checkedCount++;
-//     console.log(checkedCount)
+  });
+  return checkedCount;
 }
+var countChecked = checkedCount();
+console.log("Nombre de cases cochées : " + countChecked);
+
+
 
 
 
@@ -110,7 +128,7 @@ const highestPrice = events => Math.max(...events);
                                     class="z-50 group-open:absolute group-open:top-auto group-open:mt-2 ltr:group-open:start-0">
                                     <div class="w-96 rounded border border-gray-200 bg-white">
                                         <header class="flex items-center justify-between p-4">
-                                            <span class="text-sm text-gray-700"> {{ checkedCount }} checked </span>
+                                            <span class="text-sm text-gray-700"> {{ countChecked }} checked </span>
 
                                             <button @click="unselectCheckbox" type="button"
                                                 class="text-sm text-gray-900 underline underline-offset-4">
