@@ -18,6 +18,6 @@ class AttachEventUserController extends Controller
         $event = Event::find($event_id);
 
         $user->events()->attach($event);
-        return Inertia::render('Events/Show', ['event' => $event, 'userId' => $user_id, 'isUserAttached' => true, 'userCount' => $event->users->count()]);
+        return redirect()->route('events.show', ['event' => $event]);
     }
 }

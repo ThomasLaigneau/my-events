@@ -18,6 +18,6 @@ class DetachUserEventController extends Controller
         $event = Event::find($event_id);
 
         $user->events()->detach($event);
-        return Inertia::render('Events/Show', ['event' => $event, 'userId' => $user_id, 'isUserAttached' => false, 'userCount' => $event->users->count()]);
+        return redirect()->route('events.show', ['event' => $event]);
     }
 }
