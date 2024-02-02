@@ -54,6 +54,7 @@ class EventController extends Controller
             'event' => $event,
             'userId' => auth()->id(),
             'isUserAttached' => $isUserAttached,
+            'userCount' => $event->users->count(),
         ]);
     }
 
