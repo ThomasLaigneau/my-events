@@ -5,8 +5,10 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\EventResource\Pages;
 use App\Filament\Resources\EventResource\RelationManagers;
 use App\Models\Event;
+use App\Models\User;
 use Filament\Forms;
 use Filament\Forms\Form;
+use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -49,10 +51,10 @@ class EventResource extends Resource
                     ->multiple()
                     ->relationship('categories', 'name')
                     ->preload(),
-
                 Forms\Components\FileUpload::make('image')
                     ->disk('public')
                     ->directory('events'),
+
             ]);
     }
 
@@ -101,7 +103,7 @@ class EventResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            RelationManagers\UsersRelationManager::class,
         ];
     }
 
