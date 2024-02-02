@@ -43,7 +43,7 @@ const unselectCheckbox = () => {
 
 function checkedCount() {
   var cases = document.querySelectorAll('input[type="checkbox"]');
-  console.log(document.getElementById("myCheckbox")); // pourquoi null ?
+  console.log(document.getElementById("Checkbox")); // pourquoi null ?
   var checkedCount = 0;
 
   cases.forEach(function(caseCochee) {
@@ -123,7 +123,7 @@ const highestPrice = events => Math.max(...events);
                                         <ul class="space-y-1 border-t border-gray-200 p-4">
                                             <li v-for="(categories, index) in categories">
                                                 <label for="myCheckbox" class="inline-flex items-center gap-2">
-                                                    <input type="checkbox" ref="myCheckbox" id="myCheckbox"
+                                                    <input type="checkbox" ref="myCheckbox" id="Checkbox"
                                                            class="h-5 w-5 rounded border-gray-300"/>
                                                     <span class="text-sm font-medium text-gray-700"> {{
                                                             categories.name
