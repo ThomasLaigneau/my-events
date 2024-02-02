@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AttachEventUserController;
+use App\Http\Controllers\DetachUserEventController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\UserController;
@@ -44,3 +46,8 @@ Route::resource('users', UserController::class)->except(['index', 'update', 'sto
 
 Route::get('/register', [RegisterController::class, 'show']);
 Route::post('/register', [RegisterController::class, 'register']);
+
+// Attach and detach User to Event
+Route::get('/attach/events/{event_id}/users/{user_id}', AttachEventUserController::class);
+Route::get('/detach/events/{event_id}/users/{user_id}', DetachUserEventController::class);
+

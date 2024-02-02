@@ -192,7 +192,6 @@ const highestPrice = events => Math.max(...events);
                         </select>
                     </div>
                 </div>
-
                 <ul class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
                     <li v-for="(event, index) in events.data">
                         <a :href="route('events.show', event)" class="block overflow-hidden">
