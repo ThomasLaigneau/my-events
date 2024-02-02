@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\EventResource\Pages;
 use App\Filament\Resources\EventResource\RelationManagers;
 use App\Models\Event;
+use App\Models\User;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -49,10 +50,14 @@ class EventResource extends Resource
                     ->multiple()
                     ->relationship('categories', 'name')
                     ->preload(),
-
                 Forms\Components\FileUpload::make('image')
                     ->disk('public')
                     ->directory('events'),
+                Forms\Components\Select::make('users')
+                    ->multiple()
+                    ->label('Participants')
+                    ->relationship('users', 'name')
+                    ->rules(User::all()->pluck('id')->toArray())
             ]);
     }
 
