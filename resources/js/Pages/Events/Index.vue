@@ -1,12 +1,12 @@
 <script setup>
 
 import AppLayout from '@/Layouts/AppLayout.vue';
-import { ref } from 'vue';
+import {ref} from 'vue';
+import Pagination from '@/Components/Pagination.vue';
 
 const myCheckbox = ref('');
 
-
-defineProps({
+const props = defineProps({
     events: {
         type: Array,
         required: true,
@@ -17,16 +17,16 @@ defineProps({
     },
 });
 
+console.log(props.events.data);
 
 const unselectCheckbox = () => {
     console.log(myCheckbox.value[1]);
     for (let i = 0; i < myCheckbox.value.length; i++) {
         myCheckbox.value[i].checked = false;
     }
-}
+};
 
-
-const checkboxes = document.getElementsByClassName("myCheckbox");
+const checkboxes = document.getElementsByClassName('myCheckbox');
 let checkedCount = 0;
 // for (const checkbox of checkboxes) {
 //     if (checkbox.checked) {
@@ -34,19 +34,16 @@ let checkedCount = 0;
 //     }
 for (let i = 0; i < myCheckbox.value.length; i++) {
     checkedCount++;
-    console.log(checkedCount)
+    console.log(checkedCount);
 }
+
 // }
 
-
-
 function recupererValeur() {
-    var PriceFrom = document.getElementById("FilterPriceFrom");
+    var PriceFrom = document.getElementById('FilterPriceFrom');
     var valeurPriceFrom = PriceFrom.value;
-    console.log("La valeur de l'input est : " + valeurPriceFrom);
+    console.log('La valeur de l\'input est : ' + valeurPriceFrom);
 }
-
-
 
 const highestPrice = events => Math.max(...events);
 
@@ -73,8 +70,8 @@ const highestPrice = events => Math.max(...events);
                             <span class="text-sm font-medium"> Filters & Sorting </span>
 
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                stroke="currentColor" class="h-4 w-4 rtl:rotate-180">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                                 stroke="currentColor" class="h-4 w-4 rtl:rotate-180">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/>
                             </svg>
                         </button>
                     </div>
@@ -88,9 +85,9 @@ const highestPrice = events => Math.max(...events);
 
                                     <span class="transition group-open:-rotate-180">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                            stroke-width="1.5" stroke="currentColor" class="h-4 w-4">
+                                             stroke-width="1.5" stroke="currentColor" class="h-4 w-4">
                                             <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                                                  d="M19.5 8.25l-7.5 7.5-7.5-7.5"/>
                                         </svg>
                                     </span>
                                 </summary>
@@ -102,7 +99,7 @@ const highestPrice = events => Math.max(...events);
                                             <span class="text-sm text-gray-700"> {{ checkedCount }} checked </span>
 
                                             <button @click="unselectCheckbox" type="button"
-                                                class="text-sm text-gray-900 underline underline-offset-4">
+                                                    class="text-sm text-gray-900 underline underline-offset-4">
                                                 Reset
                                             </button>
                                         </header>
@@ -111,9 +108,11 @@ const highestPrice = events => Math.max(...events);
                                             <li v-for="(categories, index) in categories">
                                                 <label for="myCheckbox" class="inline-flex items-center gap-2">
                                                     <input type="checkbox" ref="myCheckbox" id="myCheckbox"
-                                                        class="h-5 w-5 rounded border-gray-300" />
+                                                           class="h-5 w-5 rounded border-gray-300"/>
 
-                                                    <span class="text-sm font-medium text-gray-700"> {{ categories.name }}
+                                                    <span class="text-sm font-medium text-gray-700"> {{
+                                                            categories.name
+                                                        }}
                                                     </span>
                                                 </label>
                                             </li>
@@ -131,9 +130,9 @@ const highestPrice = events => Math.max(...events);
 
                                     <span class="transition group-open:-rotate-180">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                            stroke-width="1.5" stroke="currentColor" class="h-4 w-4">
+                                             stroke-width="1.5" stroke="currentColor" class="h-4 w-4">
                                             <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                                                  d="M19.5 8.25l-7.5 7.5-7.5-7.5"/>
                                         </svg>
                                     </span>
                                 </summary>
@@ -146,7 +145,7 @@ const highestPrice = events => Math.max(...events);
                                             </span>
 
                                             <button type="button"
-                                                class="text-sm text-gray-900 underline underline-offset-4">
+                                                    class="text-sm text-gray-900 underline underline-offset-4">
                                                 Reset
                                             </button>
                                         </header>
@@ -157,14 +156,14 @@ const highestPrice = events => Math.max(...events);
                                                     <span class="text-sm text-gray-600">$</span>
 
                                                     <input type="number" id="FilterPriceFrom" placeholder="From"
-                                                        class="w-full rounded-md border-gray-200 shadow-sm sm:text-sm" />
+                                                           class="w-full rounded-md border-gray-200 shadow-sm sm:text-sm"/>
                                                 </label>
 
                                                 <label for="FilterPriceTo" class="flex items-center gap-2">
                                                     <span class="text-sm text-gray-600">$</span>
 
                                                     <input type="number" id="FilterPriceTo" placeholder="To"
-                                                        class="w-full rounded-md border-gray-200 shadow-sm sm:text-sm" />
+                                                           class="w-full rounded-md border-gray-200 shadow-sm sm:text-sm"/>
                                                 </label>
                                             </div>
                                         </div>
@@ -173,7 +172,6 @@ const highestPrice = events => Math.max(...events);
                             </details>
                         </div>
                     </div>
-
 
 
                     <div class="hidden sm:block">
@@ -190,14 +188,13 @@ const highestPrice = events => Math.max(...events);
                 </div>
 
 
-
-
                 <ul class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
 
-                    <li v-for="(event, index) in events">
-                        <a :href="route('events.show', event)" class="block overflow-hidden">                            <div class="group">
+                    <li v-for="(event, index) in events.data">
+                        <a :href="route('events.show', event)" class="block overflow-hidden">
+                            <div class="group">
                                 <img src="https://picsum.photos/1000?random=0" alt=""
-                                    class="h-[200px] w-full object-cover transition duration-500 group-hover:scale-105 sm:h-[200px]" />
+                                     class="h-[200px] w-full object-cover transition duration-500 group-hover:scale-105 sm:h-[200px]"/>
                                 <h3 class="mt-2 text-sm text-gray-700 group-hover:underline group-hover:underline-offset-4">
                                     {{ event.title }}
                                 </h3>
@@ -215,14 +212,10 @@ const highestPrice = events => Math.max(...events);
                             </div>
                         </a>
                     </li>
-
                 </ul>
+                <Pagination :links="events.links"/>
             </div>
         </section>
     </AppLayout>
 </template>
-
-
-
-
 <style scoped></style>

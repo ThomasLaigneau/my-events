@@ -1,10 +1,11 @@
 <?php
 
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,15 +38,9 @@ Route::middleware([
 });
 
 
-Route::get('/', function(){
-    return view('accueil', ['name' => 'yo']);
-});
-
-Route::get('/user/{id}', [UserController::class, 'show']);
-
-
-// Routes for events via la ressource EventController
 Route::resource('events', EventController::class);
 
-// Routes for Users via la ressource UserController sauf index update store
 Route::resource('users', UserController::class)->except(['index', 'update', 'store']);
+
+Route::get('/register', [RegisterController::class, 'show']);
+Route::post('/register', [RegisterController::class, 'register']);

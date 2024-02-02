@@ -14,7 +14,7 @@ class EventController extends Controller
      */
     public function index()
     {
-        $events = Event::all();
+        $events = Event::paginate(8);
         $categories = Category::all();
 
         return Inertia::render('Events/Index', [
