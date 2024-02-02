@@ -67,19 +67,9 @@ function recupererValeur() {
 }
 
 
+
 const highestPrice = events => Math.max(...events);
 
-//const numbers = {{events.price}};
-//const byValue = (a,b) => a - b;
-//const sorted = [...numbers].sort(byValue);
-//console.log(sorted); 
-//console.log(events.price);
-
-
-
-// const titre = [{{events.title}}];
-// titre.sort();
-// console.log(titre);
 
 </script>
 
@@ -175,7 +165,7 @@ const highestPrice = events => Math.max(...events);
                                                 <label for="FilterPriceFrom" class="flex items-center gap-2">
                                                     <span class="text-sm text-gray-600">$</span>
 
-                                                    <input type="number" id="FilterPriceFrom" placeholder="From" oninput="recupererValeur()"
+                                                    <input type="number" id="FilterPriceFrom" placeholder="From"
                                                         class="w-full rounded-md border-gray-200 shadow-sm sm:text-sm" />
                                                 </label>
                                                 <label for="FilterPriceTo" class="flex items-center gap-2">
