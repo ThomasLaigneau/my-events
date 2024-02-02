@@ -48,7 +48,13 @@ class EventController extends Controller
      */
     public function show(Event $event)
     {
-        return Inertia::render('Events/Show', ['event' => $event]);
+        $isUserAttached = auth()->user()->isAttachedToEvent($event);
+
+        return Inertia::render('Events/Show', [
+            'event' => $event,
+            'userId' => auth()->id(),
+            'isUserAttached' => $isUserAttached,
+        ]);
     }
 
     /**
