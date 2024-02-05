@@ -1,7 +1,6 @@
 <script setup>
 
 import AppLayout from '@/Layouts/AppLayout.vue';
-import {ref} from 'vue';
 
 const props = defineProps({
     event: {
@@ -12,6 +11,10 @@ const props = defineProps({
         type: Number,
         required: true,
     },
+    userName: {
+        type: String,
+        required: true,
+    },
     isUserAttached: {
         type: Boolean,
         required: true,
@@ -20,16 +23,11 @@ const props = defineProps({
         type: Number,
         required: true,
     },
-    category: {
-        type: String,
-        required: false,
-    },
 });
 
 </script>
 
 <template>
-
     <AppLayout title="Events">
 
         <section class="px-8 py-12">
@@ -44,14 +42,13 @@ const props = defineProps({
                 </header>
 
                 <div class="w-full md:w-1/2 p-6 flex flex-col">
-                    <img src="https://picsum.photos/1000?random=0" alt="" class="mx-auto w-96 h-96 object-cover rounded-lg shadow-md"/>
+                    <img src="https://picsum.photos/1000?random=0" alt=""
+                        class="mx-auto w-96 h-96 object-cover rounded-lg shadow-md" />
                 </div>
+
                 <div class="w-full md:w-1/2 p-6 space-y-2">
-                    <span v-if="props.category">
-
-                    </span>
-
-                    <span class="inline-block bg-red-200 text-red-800 text-xs px-2 rounded-full uppercase font-semibold tracking-wide">
+                    <span
+                        class="inline-block bg-red-200 text-red-800 text-xs px-2 rounded-full uppercase font-semibold tracking-wide">
                         {{ event.location }}
                     </span>
                     <p class="mt-1 text-lg leading-tight font-semibold text-gray-900">
@@ -61,13 +58,16 @@ const props = defineProps({
                         Price: {{ event.price }}$
                     </p>
                     <p class="mt-2 text-gray-600">
-                        Capacity: {{ props.userCount }} {{ event.capacity }} places
+                        Capacity: {{ event.capacity }} places
                     </p>
                     <p class="mt-2 text-gray-600">
                         Starts at: {{ event.start_date }}
                     </p>
                     <p class="mt-2 text-gray-600">
                         Ends at: {{ event.end_date }}
+                    </p>
+                    <p class="mt-2 text-gray-600">
+                        Participants : {{ props.userCount }}
                     </p>
                     <a v-if="!props.isUserAttached" :href="`/attach/events/${props.event.id}/users/${props.userId}`" class="mt-4 block w-full px-6 py-2 text-xs font-medium leading-6 text-center text-white uppercase transition bg-gray-700 rounded shadow
                     hover:shadow-lg hover:bg-gray-600 focus:outline-none">
@@ -79,12 +79,18 @@ const props = defineProps({
                     </a>
                 </div>
 
+
+                <ul>
+                    Liste des participants :
+                    <li v-for="p in props.userCount"> {{ props.userName.name }} </li>
+                </ul>
+
+
             </div>
 
         </section>
 
     </AppLayout>
-
 </template>
 
 <style scoped></style>

@@ -53,6 +53,7 @@ class EventController extends Controller
         return Inertia::render('Events/Show', [
             'event' => $event,
             'userId' => auth()->id(),
+            'userName' => auth()->user(),
             'isUserAttached' => $isUserAttached,
             'userCount' => $event->users->count(),
         ]);
