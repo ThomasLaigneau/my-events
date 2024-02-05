@@ -20,6 +20,10 @@ const props = defineProps({
         type: Number,
         required: true,
     },
+    category: {
+        type: String,
+        required: false,
+    },
 });
 
 </script>
@@ -42,8 +46,11 @@ const props = defineProps({
                 <div class="w-full md:w-1/2 p-6 flex flex-col">
                     <img src="https://picsum.photos/1000?random=0" alt="" class="mx-auto w-96 h-96 object-cover rounded-lg shadow-md"/>
                 </div>
-
                 <div class="w-full md:w-1/2 p-6 space-y-2">
+                    <span v-if="props.category">
+
+                    </span>
+
                     <span class="inline-block bg-red-200 text-red-800 text-xs px-2 rounded-full uppercase font-semibold tracking-wide">
                         {{ event.location }}
                     </span>
