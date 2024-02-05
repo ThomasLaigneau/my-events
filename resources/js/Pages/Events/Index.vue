@@ -4,8 +4,6 @@ import AppLayout from '@/Layouts/AppLayout.vue';
 import {ref} from 'vue';
 import Pagination from '@/Components/Pagination.vue';
 
-const myCheckbox = ref('');
-
 const props = defineProps({
     events: {
         type: Array,
@@ -19,6 +17,10 @@ const props = defineProps({
 
 console.log(props.events.data);
 
+
+
+const myCheckbox = ref('');
+
 const unselectCheckbox = () => {
     console.log(myCheckbox.value[1]);
     for (let i = 0; i < myCheckbox.value.length; i++) {
@@ -26,36 +28,21 @@ const unselectCheckbox = () => {
     }
 };
 
-
-// const checkboxes = document.getElementsByClassName("myCheckbox");
-// let checkedCount = 0;
-// console.log(checkedCount);
-// for (const checkbox of checkboxes) {
-//     if (checkbox.checked) {
-//         checkedCount++;
-//         console.log(checkedCount)
-//     }
-// // for (let i = 0; i < myCheckbox.value.length; i++) {
-// //     checkedCount++;
-// //     console.log(checkedCount)
-// }
+console.log(myCheckbox.value)
 
 
-function checkedCount() {
-  var cases = document.querySelectorAll('input[type="checkbox"]');
-  console.log(document.getElementById("Checkbox")); // pourquoi null ?
-  var checkedCount = 0;
 
-  cases.forEach(function(caseCochee) {
-    if (caseCochee.checked) {
-        checkedCount++;
+let box = 0;
+
+const checkedBox = () => {
+    console.log(myCheckbox[1].value); 
+    for (let i = 0; i < myCheckbox.length; i++) {
+        myCheckbox[i].checked = box++;
     }
-  });
-  return checkedCount;
-}
-var countChecked = checkedCount();
-console.log("Nombre de cases cochées : " + countChecked);
+    return box;
+};
 
+console.log(box);
 
 
 
@@ -113,7 +100,7 @@ const highestPrice = events => Math.max(...events);
                                     class="z-50 group-open:absolute group-open:top-auto group-open:mt-2 ltr:group-open:start-0">
                                     <div class="w-96 rounded border border-gray-200 bg-white">
                                         <header class="flex items-center justify-between p-4">
-                                            <span class="text-sm text-gray-700"> {{ countChecked }} checked </span>
+                                            <span class="text-sm text-gray-700"> {{ box }} checked </span>
 
                                             <button @click="unselectCheckbox" type="button"
                                                     class="text-sm text-gray-900 underline underline-offset-4">
