@@ -23,7 +23,21 @@ const props = defineProps({
         type: Number,
         required: true,
     },
+    attachedCategories: {
+        type: Array,
+        required: true,
+    },
+    relatedEvents: {
+        type: Array,
+        required: true,
+    },
 });
+
+
+var adresse = "569 Eldred Vista Willville, SC 76641-8463";
+var ville = adresse.split(',')[0].trim();
+console.log(ville);
+
 
 </script>
 
@@ -79,14 +93,59 @@ const props = defineProps({
                     </a>
                 </div>
 
+                <div class="block">
+                    <div>
+                        <ul>
+                            Liste des participants :
+                            <li v-for="p in props.userCount"> {{ props.userName.name }} </li>
+                        </ul>
+                    </div>
 
-                <ul>
-                    Liste des participants :
-                    <li v-for="p in props.userCount"> {{ props.userName.name }} </li>
-                </ul>
+
+                    <div>
+                        Catégorie :
+                        <div v-if="props.attachedCategories && props.attachedCategories.length > 0">
+                            <p v-for="category in props.attachedCategories"> {{ category.name }}
+                            </p>
+                        </div>
+                        <p v-else> pas de catégorie attachée </p>
+                    </div>
 
 
+                    <h2>Événements connexes :</h2>
+
+                    <div v-if="props.relatedEvents && props.relatedEvents.length > 0">
+
+                        <ul class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                            <li v-for="relatedEvent in props.relatedEvents">
+                                <a :href="route('events.show', relatedEvent)" class="block overflow-hidden">
+                                    <div class="group">
+                                        <img src="https://picsum.photos/1000?random=0" alt=""
+                                            class="h-[200px] w-full object-cover transition duration-500 group-hover:scale-105 sm:h-[200px]" />
+                                        <h3
+                                            class="mt-2 text-sm text-gray-700 group-hover:underline group-hover:underline-offset-4">
+                                            {{ relatedEvent.title }}
+                                        </h3>
+                                    </div>
+                                    <div class="relative bg-white pt-3">
+                                        <p>
+                                            <span class="tracking-wider text-gray-900"> {{ relatedEvent.price }}$</span>
+                                        </p>
+                                        <p>
+                                            <span
+                                                class="tracking-wider text-red-800 text-xs hover:underline hover:underline-offset-4">
+                                                {{ relatedEvent.location }} {{ relatedEvent.attachedCategories }} </span>
+                                        </p>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <p v-else> Aucun événement connexe trouvé </p>
+                </div>
             </div>
+
 
         </section>
 

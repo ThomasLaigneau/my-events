@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Event;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 
 class EventController extends Controller
@@ -49,12 +50,23 @@ class EventController extends Controller
     public function show(Event $event)
     {
         $isUserAttached = auth()->user()->isAttachedToEvent($event);
+        $attachedCategories = $event->categories; 
+
+        $relatedEventIds = DB::table('category_event')
+        ->whereIn('category_id', $attachedCategories->pluck('id'))
+        ->where('event_id', '!=', $event->id)
+        ->pluck('event_id')
+        ->toArray();
+        $relatedEvents = Event::whereIn('id', $relatedEventIds)->get();
+
 
         return Inertia::render('Events/Show', [
             'event' => $event,
             'userId' => auth()->id(),
             'userName' => auth()->user(),
             'isUserAttached' => $isUserAttached,
+            'attachedCategories' => $attachedCategories,
+            'relatedEvents' => $relatedEvents, 
             'userCount' => $event->users->count(),
         ]);
     }
