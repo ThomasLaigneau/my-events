@@ -115,7 +115,7 @@ console.log(ville);
                     <div v-if="props.relatedEvents && props.relatedEvents.length > 0">
 
                         <ul class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-                            <li v-for="relatedEvent in props.relatedEvents">
+                            <li v-for="(relatedEvent, index) in props.relatedEvents.slice(0, 4)" :key="index">
                                 <a :href="route('events.show', relatedEvent)" class="block overflow-hidden">
                                     <div class="group">
                                         <img src="https://picsum.photos/1000?random=0" alt=""
@@ -130,18 +130,15 @@ console.log(ville);
                                             <span class="tracking-wider text-gray-900"> {{ relatedEvent.price }}$</span>
                                         </p>
                                         <p>
-                                            <span
-                                                class="tracking-wider text-red-800 text-xs hover:underline hover:underline-offset-4">
-                                                {{ relatedEvent.location }} {{
-                                                    relatedEvent.attachedCategories
-                                                }} </span>
+                                        <span class="tracking-wider text-red-800 text-xs hover:underline hover:underline-offset-4">
+                                            {{ relatedEvent.location }} {{relatedEvent.attachedCategories }}
+                                        </span>
                                         </p>
                                     </div>
                                 </a>
                             </li>
                         </ul>
                     </div>
-
                     <p v-else> Aucun événement connexe trouvé </p>
                 </div>
             </div>
