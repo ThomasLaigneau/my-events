@@ -29,6 +29,11 @@ Route::get('/', function () {
     ]);
 });
 
+Route::get('/login', [App\Http\Controllers\AuthController::class, 'loginShow'])->name('login');
+Route::post('/login', [App\Http\Controllers\AuthController::class, 'login']);
+Route::get('/register', [App\Http\Controllers\AuthController::class, 'registerShow'])->name('register');
+Route::post('/register', [App\Http\Controllers\AuthController::class, 'register']);
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -43,9 +48,6 @@ Route::middleware([
 Route::resource('events', EventController::class);
 
 Route::resource('users', UserController::class)->except(['index', 'update', 'store']);
-
-Route::get('/register', [RegisterController::class, 'show']);
-Route::post('/register', [RegisterController::class, 'register']);
 
 // Attach and detach User to Event
 Route::get('/attach/events/{event_id}/users/{user_id}', AttachEventUserController::class);
