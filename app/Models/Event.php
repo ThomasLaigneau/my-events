@@ -16,7 +16,8 @@ class Event extends Model
         'end_date',
         'location',
         'capacity',
-        'price'
+        'price',
+        'image',
     ];
 
     public function setPriceAttribute($value)
@@ -32,5 +33,10 @@ class Event extends Model
     public function categories()
     {
         return $this->belongsToMany(Category::class);
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
     }
 }

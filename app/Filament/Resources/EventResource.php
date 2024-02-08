@@ -5,13 +5,13 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\EventResource\Pages;
 use App\Filament\Resources\EventResource\RelationManagers;
 use App\Models\Event;
+use App\Models\User;
 use Filament\Forms;
 use Filament\Forms\Form;
+use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class EventResource extends Resource
 {
@@ -47,11 +47,14 @@ class EventResource extends Resource
                     ->numeric()
                     ->default(0)
                     ->prefix('€'),
-
                 Forms\Components\Select::make('categories')
                     ->multiple()
                     ->relationship('categories', 'name')
                     ->preload(),
+                Forms\Components\FileUpload::make('image')
+                    ->disk('public')
+                    ->directory('events'),
+
             ]);
     }
 
@@ -100,7 +103,7 @@ class EventResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            RelationManagers\UsersRelationManager::class,
         ];
     }
 

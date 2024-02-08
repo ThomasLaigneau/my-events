@@ -48,8 +48,9 @@ const logout = () => {
 
                             <!-- Navigation Links -->
                             <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                                <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
-                                    Dashboard
+                                <!-- Link to events page -->
+                                <NavLink :href="route('events.index')" :active="route().current('events.index')">
+                                    Events
                                 </NavLink>
                             </div>
                         </div>
@@ -98,7 +99,7 @@ const logout = () => {
                                                     <form @submit.prevent="switchToTeam(team)">
                                                         <DropdownLink as="button">
                                                             <div class="flex items-center">
-                                                                <svg v-if="team.id == $page.props.auth.user.current_team_id" class="me-2 h-5 w-5 text-green-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                                                <svg v-if="team.id === $page.props.auth.user.current_team_id" class="me-2 h-5 w-5 text-green-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                                                                     <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                                                 </svg>
 
@@ -114,7 +115,7 @@ const logout = () => {
                             </div>
 
                             <!-- Settings Dropdown -->
-                            <div class="ms-3 relative">
+                            <div class="ms-3 relative" v-if="$page.props.auth.user">
                                 <Dropdown align="right" width="48">
                                     <template #trigger>
                                         <button v-if="$page.props.jetstream.managesProfilePhotos" class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition">
@@ -157,6 +158,18 @@ const logout = () => {
                                     </template>
                                 </Dropdown>
                             </div>
+                            <div  v-if="!$page.props.auth.user">
+                                <div class="ms-3 relative">
+                                    <Link :href="route('login')" class="text-sm text-gray-600 underline hover:text-gray-900">
+                                        Login
+                                    </Link>
+                                </div>
+                                <div class="ms-3 relative">
+                                    <Link :href="route('register')" class="text-sm text-gray-600 underline hover:text-gray-900">
+                                        Register
+                                    </Link>
+                                </div>
+                            </div>
                         </div>
 
                         <!-- Hamburger -->
@@ -197,7 +210,7 @@ const logout = () => {
                     </div>
 
                     <!-- Responsive Settings Options -->
-                    <div class="pt-4 pb-1 border-t border-gray-200">
+                    <div class="pt-4 pb-1 border-t border-gray-200" v-if="$page.props.auth.user">
                         <div class="flex items-center px-4">
                             <div v-if="$page.props.jetstream.managesProfilePhotos" class="shrink-0 me-3">
                                 <img class="h-10 w-10 rounded-full object-cover" :src="$page.props.auth.user.profile_photo_url" :alt="$page.props.auth.user.name">
