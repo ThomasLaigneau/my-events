@@ -158,6 +158,18 @@ const logout = () => {
                                     </template>
                                 </Dropdown>
                             </div>
+                            <div  v-if="!$page.props.auth.user">
+                                <div class="ms-3 relative">
+                                    <Link :href="route('login')" class="text-sm text-gray-600 underline hover:text-gray-900">
+                                        Login
+                                    </Link>
+                                </div>
+                                <div class="ms-3 relative">
+                                    <Link :href="route('register')" class="text-sm text-gray-600 underline hover:text-gray-900">
+                                        Register
+                                    </Link>
+                                </div>
+                            </div>
                         </div>
 
                         <!-- Hamburger -->
